@@ -1,5 +1,10 @@
+from fastapi import FastAPI
 from mangum import Mangum
-from app import app
 
-# Mangum transforma la app ASGI (FastAPI) en un handler compatible con Lambda/Vercel
+app = FastAPI()
+
+@app.get("/")
+def read_root():
+    return {"message": "Hola desde FastAPI en Vercel!"}
+
 handler = Mangum(app)
